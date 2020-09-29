@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import uuid from 'uuid/v4'
 import {useDispatch} from 'react-redux'
-
+import {addTodoAction} from '../store/todoReducer'
 
 const TodoInput = () => {
     // todo 가 CRUD 대상(object) 입니다. -> 속성이 된다.

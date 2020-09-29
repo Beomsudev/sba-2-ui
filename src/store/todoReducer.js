@@ -13,23 +13,25 @@ export const deleteTodoaction = todoId => ({
     payload : todoId
 })
 
-const intialState = {todos: [], todoIds: []}
+const initialState = {todos: []}
 
-const todoReducer = (state = intialState, action) => {
+const todoReducer = (state = initialState, action) => {
     switch(action.type){
         case "ADD_TODO":
             return{...state, todos: [...state.todos, action.payload]}
 
         case "TOGGLE_TODO":
-            return{...state, todoIds: [...state.todoIds, action.payload]}
+            return{...state, todos: 
+                                state.todos.map(todo => todo.todoId === action.payload ?
+                                    {...todo, complete: !todo.complete} : todo)
+            }
 
         case "DELETE_TODO":
-            return{...state, todoIds: [...state.todoIds, action.payload]}
+            return{...state, todos: state.todos.filter(todo => todo.todoId !== action.payload)}
 
         default:
             return state
     }
-
 }
 
 export default todoReducer
